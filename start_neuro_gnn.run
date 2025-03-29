@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --time=1:0:0
+#SBATCH --qos=ee-452
+#SBATCH --account=ee-452
+#SBATCH --gres=gpu:volta:2
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=gpu
+#SBATCH --mem=64G
+#SBATCH --output=./output.log  # Redirect stdout
+
+module load gcc python cuda cudnn
+source ../venvs/neurognn/bin/activate
+srun python3 ../NeuroGNN/train.py --input_dir ../data/ --raw_data_dir ./data/train/signals --save_dir ./results \
+--max_seq_len 12 --do_train --num_epochs 10 --task detection --metric_name auroc --use_fft --lr_init 1e-4 \
+--num_classes 1 --data_augment --model_name neurognn --num_workers 1
+deactivate

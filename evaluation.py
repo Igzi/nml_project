@@ -129,6 +129,8 @@ def evaluate(model,
         # Calculate average F1 score across all folds
         avg_f1_score = np.mean(fold_results)
         std_f1_score = np.std(fold_results)
+        del model_fold, optimizer, train_loader, val_loader, train_dataset, val_dataset
+        torch.cuda.empty_cache()
 
     print(f"Cross-Validation Average F1 Score: {avg_f1_score:.4f}")
     print(f"Cross-Validation F1 Score Standard Deviation: {std_f1_score:.4f}")

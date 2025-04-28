@@ -3,7 +3,7 @@
 #SBATCH --time=1:0:0
 #SBATCH --qos=ee-452
 #SBATCH --account=ee-452
-#SBATCH --gres=gpu:volta:2
+#SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=gpu

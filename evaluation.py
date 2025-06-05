@@ -122,7 +122,7 @@ def evaluate(model,
                 all_preds.extend(val_preds.cpu().numpy())
 
         # Compute F1 score for this fold
-        fold_f1 = f1_score(all_labels, all_preds, average='binary')
+        fold_f1 = f1_score(all_labels, all_preds, average='macro')
         print(f"Fold {fold + 1} F1 Score: {fold_f1:.4f}")
         fold_results.append(fold_f1)
 

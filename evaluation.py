@@ -6,6 +6,8 @@ from sklearn.metrics import f1_score
 from sklearn.model_selection import KFold
 from seiz_eeg.dataset import EEGDataset
 import numpy as np
+from torch.utils.data import Subset
+from tqdm import tqdm
 
 def evaluate(model, 
               clips, 
@@ -38,14 +40,17 @@ def evaluate(model,
     Returns:
         avg_f1_score: Average F1 score across all folds.
         std_f1_score: Standard deviation of F1 scores across all folds.
-
-    Notes:
-        - The function performs patient-level cross-validation, ensuring that clips from the same patient
-          are not split across training and validation sets.
-        - The F1 score is computed for each fold using weighted averaging to handle class imbalance.
-        - The standard deviation of the F1 scores across folds is also calculated to measure variability.
     """
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # Create a complete dataset first and apply transform once
+    complete_dataset = EEGDataset(
+        clips,
+        signals_root=signals_root,
+        signal_transform=signal_transform,
+        prefetch=prefetch
+    )
+    
     # Extract unique patients from the dataset
     patients = clips['signals_path'].unique()  # Assuming 'patient_id' column exists
 
@@ -63,20 +68,14 @@ def evaluate(model,
         # Filter clips based on the split patients
         train_clips = clips[clips['signals_path'].isin(train_patients)]
         val_clips = clips[clips['signals_path'].isin(val_patients)]
-
-        # Create EEGDataset instances for training and validation
-        train_dataset = EEGDataset(
-            train_clips,
-            signals_root=signals_root,
-            signal_transform=signal_transform,
-            prefetch=prefetch
-        )
-        val_dataset = EEGDataset(
-            val_clips,
-            signals_root=signals_root,
-            signal_transform=signal_transform,
-            prefetch=prefetch
-        )
+        
+        # Get indices for training and validation from the complete dataset
+        train_indices = [i for i, path in enumerate(clips['signals_path']) if path in train_patients]
+        val_indices = [i for i, path in enumerate(clips['signals_path']) if path in val_patients]
+        
+        # Create subset datasets using the precomputed transforms
+        train_dataset = Subset(complete_dataset, train_indices)
+        val_dataset = Subset(complete_dataset, val_indices)
 
         # Create DataLoaders
         train_loader = DataLoader(
@@ -96,7 +95,7 @@ def evaluate(model,
         optimizer = optim.Adam(model_fold.parameters(), lr=learning_rate)
 
         # Training loop
-        for epoch in range(num_epochs):
+        for epoch in tqdm(range(num_epochs), desc=f"Training Fold {fold + 1}"):
             model_fold.train()
             for signals, labels in train_loader:
                 signals, labels = signals.float().to(device), labels.float().unsqueeze(1).to(device)
@@ -126,11 +125,12 @@ def evaluate(model,
         print(f"Fold {fold + 1} F1 Score: {fold_f1:.4f}")
         fold_results.append(fold_f1)
 
-        # Calculate average F1 score across all folds
-        avg_f1_score = np.mean(fold_results)
-        std_f1_score = np.std(fold_results)
-        del model_fold, optimizer, train_loader, val_loader, train_dataset, val_dataset
+        del model_fold, optimizer, train_loader, val_loader
         torch.cuda.empty_cache()
+
+    # Calculate average F1 score across all folds
+    avg_f1_score = np.mean(fold_results)
+    std_f1_score = np.std(fold_results)
 
     print(f"Cross-Validation Average F1 Score: {avg_f1_score:.4f}")
     print(f"Cross-Validation F1 Score Standard Deviation: {std_f1_score:.4f}")

@@ -113,6 +113,6 @@ def create_hjorth_transforms():
     
     def hjorth_transform(x: np.ndarray) -> np.ndarray:
         """Transform EEG signal to Hjorth features for GAT."""
-        return hjorth_extractor(x)
+        return hjorth_extractor(x).T
     
     return hjorth_transform, hjorth_transform  # Same for train and test

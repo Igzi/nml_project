@@ -163,6 +163,33 @@ jupyter notebook cnn.ipynb
 
 ## Results
 
+We evaluated both sequence-based and graph-based models using 5-fold cross-validation. The primary metric was the **F1 score**, due to its robustness for imbalanced classification.
+
+### F1 Scores – Sequence-Based Models
+
+| Fold   | BiLSTM | Hjorth | CNN   | Spectrogram |
+|--------|--------|--------|-------|-------------|
+| Fold 1 | 0.7421 | 0.8004 | 0.6907 | 0.7365      |
+| Fold 2 | 0.6791 | 0.6865 | 0.7035 | 0.6900      |
+| Fold 3 | 0.6545 | 0.6936 | 0.7314 | 0.7423      |
+| Fold 4 | 0.6801 | 0.7198 | 0.6975 | 0.7039      |
+| Fold 5 | 0.7525 | 0.7393 | 0.7174 | 0.6863      |
+| **Avg** | **0.7017** | **0.7279** | **0.7081** | **0.7118** |
+| **Std** | 0.0385 | 0.0409 | 0.0146 | 0.0234      |
+
+### F1 Scores – Graph-Based Models
+
+| Fold   | ST-GCN | ChebNet | GAT   |
+|--------|--------|---------|-------|
+| Fold 1 | 0.6951 | 0.6426  | 0.6897 |
+| Fold 2 | 0.6570 | 0.5855  | 0.5750 |
+| Fold 3 | 0.6596 | 0.6187  | 0.6335 |
+| Fold 4 | 0.6140 | 0.5828  | 0.6922 |
+| Fold 5 | 0.6743 | 0.5679  | 0.6355 |
+| **Avg** | **0.6600** | **0.5995** | **0.6452** |
+| **Std** | 0.0267 | 0.0272 | 0.0432 |
+
+>  **Note**: While graph-based models did not outperform the best sequence-based model (Hjorth + RF), they offer interpretability advantages and hold potential for future extensions via dynamic graph construction and semantic embedding.
 
 
 ## Credits

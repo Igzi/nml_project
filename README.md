@@ -189,7 +189,7 @@ We evaluated both sequence-based and graph-based models using 5-fold cross-valid
 | **Avg** | **0.6600** | **0.5995** | **0.6452** |
 | **Std** | 0.0267 | 0.0272 | 0.0432 |
 
->  **Note**: While graph-based models did not outperform the best sequence-based model (Hjorth + RF), they offer interpretability advantages and hold potential for future extensions via dynamic graph construction and semantic embedding.
+>  📌 **Note**: While graph-based models did not outperform the best sequence-based model (Hjorth + RF), they offer interpretability advantages and hold potential for future extensions via dynamic graph construction and semantic embedding.
 
 
 ## Credits

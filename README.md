@@ -46,7 +46,23 @@ We use a subset of the [Temple University Hospital EEG Seizure Corpus (TUSZ)](ht
 - **Labels**: Each window in the training set is labeled as either normal brain activity or seizure activity.
 - **Graphs**: For graph-based approaches, electrodes are modeled as nodes, and edges are constructed based on 3D distances between electrodes (provided via `distances_3d.csv`). 
 
-> ⚠️ Usage of the dataset is subject to the TUSZ data license agreement. Redistribution is not permitted, and any attempt to re-identify anonymized subjects is strictly prohibited.
+### 📥 Download Instructions
+
+> ⚠️ The dataset is **not included** in this repository due to licensing restrictions and its large size.
+
+To use this project, download the dataset manually and organize it as follows:
+```
+data/
+├── train/
+│ ├── signals/
+│ └── segments.parquet
+└── test/
+├── signals/
+└── segments.parquet
+```
+Make sure the `data/` directory is placed at the root level of the project or adjust the notebook paths accordingly.
+
+> 📜 Usage of the dataset is subject to the TUSZ data license agreement. Redistribution is not permitted, and any attempt to re-identify anonymized subjects is strictly prohibited.
 
 
 ## Method

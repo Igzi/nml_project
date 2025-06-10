@@ -127,6 +127,7 @@ jupyter notebook cnn.ipynb
 │   initial_sem_embs.txt      # Initial semantic embeddings (not actively used in this project)
 │   requirements.txt          # List of required Python packages for running the notebooks
 │   README.md                 # Project documentation
+│   Report.pdf                # Project report
 │   start_jupyter_server.bash # Bash script to launch a local Jupyter server (optional)
 │
 ├───CNN                       # Convolutional Neural Network (time-domain and frequency-domain approaches)

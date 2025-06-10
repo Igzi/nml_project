@@ -59,6 +59,7 @@ data/
 └── test/
 ├── signals/
 └── segments.parquet
+├── distances_3d.csv
 ```
 Make sure the `data/` directory is placed at the root level of the project or adjust the notebook paths accordingly.
 

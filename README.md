@@ -112,23 +112,23 @@ jupyter notebook cnn.ipynb
 │   README.md                 # Project documentation
 │   start_jupyter_server.bash # Bash script to launch a local Jupyter server (optional)
 │
-├───CNN                     # Convolutional Neural Network (time-domain and frequency-domain approaches)
+├───CNN                       # Convolutional Neural Network (time-domain and frequency-domain approaches)
 │       cnn.ipynb
 │       cnn_submission_fft.csv
 │       cnn_submission_time.csv
 │
-├───ChebNet                     # Spectral GNN using Chebyshev polynomial filters
+├───ChebNet                   # Spectral GNN using Chebyshev polynomial filters
 │       chebnet.ipynb
 │       submission_seed5.csv
 │
-├───DCRNN                      # Diffusion Convolutional Recurrent Neural Network for spatio-temporal modeling
+├───DCRNN                     # Diffusion Convolutional Recurrent Neural Network for spatio-temporal modeling
 │       dcrnn.ipynb
 │       submission_dcrnn.csv
 │
-├───GAT                     # Graph Attention Network for seizure detection using EEG graphs
+├───GAT                       # Graph Attention Network for seizure detection using EEG graphs
 │       GAT.ipynb
 │
-├───Hjorth                     # Models using Hjorth parameters (Activity, Mobility, Complexity)
+├───Hjorth                    # Models using Hjorth parameters (Activity, Mobility, Complexity)
 │       hjorth.ipynb
 │       hjorth.py
 │       submission_hjorth_rf.csv
@@ -139,7 +139,7 @@ jupyter notebook cnn.ipynb
 │       example.ipynb
 │       example.md
 │
-├───RNN                     # Recurrent Neural Network models (LSTM, BiLSTM)
+├───RNN                       # Recurrent Neural Network models (LSTM, BiLSTM)
 │       BiLSTM copy.ipynb
 │       BiLSTM.ipynb
 │       RNN-full-sequence.ipynb
@@ -153,10 +153,10 @@ jupyter notebook cnn.ipynb
 │       submission_seed1.csv
 │       submission_smote_full_sequence.csv
 │
-├───Spectrogram                     # Model based on spectrogram features of EEG signal
+├───Spectrogram               # Model based on spectrogram features of EEG signal
 │       spectrogram.ipynb
 │
-├───data                     # EEG graph metadata and resources
+├───data                      # EEG graph metadata and resources
 │       distances_3d.csv
 │
 ```

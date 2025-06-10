@@ -169,7 +169,7 @@ jupyter notebook cnn.ipynb
 
 This project was carried out as part of the [EE-452: Network Machine Learning](https://edu.epfl.ch/coursebook/en/network-machine-learning-EE-452) course at EPFL. We would like to thank the course staff for their guidance and support throughout the project.
 
-We also acknowledge the creators of the [Temple University Hospital EEG Seizure Corpus (TUSZ)](https://isip.piconepress.com/projects/nedc/tuh_eeg/html/downloads.shtml) for providing access to the dataset used in this work. Use of the dataset complies with the terms outlined in the official TUSZ agreement.
+We also acknowledge the creators of the [Temple University Hospital EEG Seizure Corpus (TUSZ)](https://www.frontiersin.org/journals/neuroinformatics/articles/10.3389/fninf.2018.00083/full) for providing access to the dataset used in this work. Use of the dataset complies with the terms outlined in the official TUSZ agreement.
 
 All models were implemented using open-source libraries including PyTorch, PyTorch Geometric, and scikit-learn.
 
